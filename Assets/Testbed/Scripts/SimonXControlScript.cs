@@ -20,7 +20,11 @@ public class SimonXControlScript : MonoBehaviour {
     }
 
     public float TiltRate = 32.0f;
-    float ButtonEmissionIncreaseRate = 6.0f;
+	private float horizontalAngle = 0;
+	private float verticalAngle = 0;
+	private const float MAX_ANGLE = 25;
+
+	float ButtonEmissionIncreaseRate = 6.0f;
     float ButtonEmissionDecreaseRate = 18.0f;
     MeshRenderer SimonBodyMesh;
     SimonButtonData[] SimonButtons = 
@@ -47,11 +51,10 @@ public class SimonXControlScript : MonoBehaviour {
 
         transform.localRotation = Quaternion.Euler(currEulerAngles);*/
 
-        transform.Rotate(
-            -Input.GetAxis("Vertical") * TiltRate * Time.deltaTime,
-            0.0f,
-            Input.GetAxis("Horizontal") * TiltRate * Time.deltaTime
-            );
+		horizontalAngle = Mathf.Clamp(Input.GetAxis ("Horizontal") * TiltRate * Time.deltaTime + horizontalAngle, -MAX_ANGLE, MAX_ANGLE);
+		verticalAngle = Mathf.Clamp(-Input.GetAxis("Vertical") * TiltRate * Time.deltaTime + verticalAngle, -MAX_ANGLE, MAX_ANGLE);
+
+		transform.rotation = Quaternion.AngleAxis (horizontalAngle, Vector3.forward) * Quaternion.AngleAxis (verticalAngle, Vector3.right);
 
         for(int i = 0; i < SimonButtons.Length; ++i)
         {

@@ -8,6 +8,26 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private Vector2 cornerUR = Vector2.zero;
 	[SerializeField] private float tiltRange = 5f;
 
+	void Update () {
+
+		if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_LL)) {
+
+			RaycastHit hit;
+			Physics.Raycast (transform.position, -Vector3.up, out hit, 15);
+
+			if (hit.collider != null && hit.collider.CompareTag("Enemy")) {
+				hit.collider.GetComponent<Enemy> ().TakeHit (SimonXInterface.SimonButtonType.Button_LL);
+			}
+
+		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_LR)) {
+
+		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_UR)) {
+
+		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_UL)) {
+
+		} 
+	}
+
 	void FixedUpdate () {
 
 		Vector3 v = SimonXInterface.GetUpVector ();
