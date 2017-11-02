@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4657543316408532}
+  - component: {fileID: 114895145781782088}
   m_Layer: 0
   m_Name: Grid Square
   m_TagString: Untagged
@@ -69,6 +70,26 @@ Transform:
   m_Father: {fileID: 4657543316408532}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114895145781782088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453628809341440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ab725d232b6cc4aa4558247074217e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkable: 1
+  weight: 1
+  x: 0
+  y: 0
+  prev: {fileID: 0}
+  goal: 3.4028235e+38
+  fitness: 3.4028235e+38
+  heapIndex: 0
+  closed: 0
 --- !u!212 &212559074172195420
 SpriteRenderer:
   m_ObjectHideFlags: 1

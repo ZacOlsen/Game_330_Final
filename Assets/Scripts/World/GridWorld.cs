@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class GridWorld : MonoBehaviour {
 
-	[SerializeField] private GameObject gridSquare = null;
+	//[SerializeField] private GameObject gridSquare = null;
 
 	public const int WIDTH = 7;
 	public const int HEIGHT = 9;
-	private bool[,] grid;
+	public static Tile[,] grid;
 
 	void Start () {
 
-		grid = new bool[WIDTH, HEIGHT];
+		grid = new Tile[WIDTH, HEIGHT];
 
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
 
-				Instantiate (gridSquare, new Vector3 (x, 0, y), Quaternion.identity).transform.SetParent (transform);
+				grid [x, y] = transform.GetChild(x + y * WIDTH).GetComponent<Tile>();
+				grid [x, y].x = x;
+				grid [x, y].y = y;
+				grid [x, y].transform.SetParent (transform);
 			}
 		}
 	}

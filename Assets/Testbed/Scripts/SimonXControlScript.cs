@@ -51,6 +51,11 @@ public class SimonXControlScript : MonoBehaviour {
 
         transform.localRotation = Quaternion.Euler(currEulerAngles);*/
 
+		if (Input.GetKey ("f")) {
+			horizontalAngle = 0;
+			verticalAngle = 0;
+		}
+
 		horizontalAngle = Mathf.Clamp(Input.GetAxis ("Horizontal") * TiltRate * Time.deltaTime + horizontalAngle, -MAX_ANGLE, MAX_ANGLE);
 		verticalAngle = Mathf.Clamp(-Input.GetAxis("Vertical") * TiltRate * Time.deltaTime + verticalAngle, -MAX_ANGLE, MAX_ANGLE);
 
