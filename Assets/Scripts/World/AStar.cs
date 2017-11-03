@@ -57,7 +57,7 @@ public static class AStar {
 			path = CreatePath (finish);
 		}
 
-//		CleanseMap (grid);
+		CleanseMap (grid);
 
 		return path;
 	}
@@ -106,7 +106,7 @@ public static class AStar {
 			finish = finish.prev;
 		}
 
-		Debug.Break ();
+//		Debug.Break ();
 
 		return path;
 	}

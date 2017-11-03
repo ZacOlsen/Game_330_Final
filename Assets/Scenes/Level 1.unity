@@ -191,10 +191,11 @@ GameObject:
   m_Component:
   - component: {fileID: 60767473}
   - component: {fileID: 60767474}
+  - component: {fileID: 60767476}
   - component: {fileID: 60767475}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,10 +266,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe16e9a33143d04ba809574920fdab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueHP: 5
+  yellowHP: 5
+  greenHP: 10
+  redHP: 5
+  blueSpeed: 5
+  yellowSpeed: 5
+  greenSpeed: 5
+  redSpeed: 5
+  hp: 0
   speed: 0.05
-  colors: 00000100
-  current: {fileID: 1381502965}
+  color: 3
+  currentTile: {fileID: 1381502965}
   end: {fileID: 1774561227}
+--- !u!65 &60767476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60767472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000002, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &69391818
 Prefab:
   m_ObjectHideFlags: 0
@@ -991,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491b5d8aac42f054583854f74c9fdb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   cornerLL: {x: -3, y: -4}
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
@@ -2578,7 +2601,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.79
   m_Range: 10
   m_SpotAngle: 30
@@ -4071,7 +4094,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 0.859, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30

@@ -12,13 +12,24 @@ public class Enemy : MonoBehaviour {
 		RED
 	}
 
-	[SerializeField] private float speed = 5;
+	[SerializeField] private int blueHP = 5;
+	[SerializeField] private int yellowHP = 5;
+	[SerializeField] private int greenHP = 5;
+	[SerializeField] private int redHP = 5;
+
+	[SerializeField] private float blueSpeed = 5;
+	[SerializeField] private float yellowSpeed = 5;
+	[SerializeField] private float greenSpeed = 5;
+	[SerializeField] private float redSpeed = 5;
+
+	[SerializeField] private int hp;
+	[SerializeField] private float speed;
 	private const float ERROR_RANGE = .05f;
 
 	public Colors color;
 
 	private SpriteRenderer sr;
-	public Tile current = null;
+	public Tile currentTile = null;
 	public Tile end = null;
 
 	private Stack<Tile> path;
@@ -26,7 +37,7 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 
 		sr = GetComponent<SpriteRenderer> ();
-		path = AStar.Path (current, end, GridWorld.grid);
+		path = AStar.Path (currentTile, end, GridWorld.grid);
 
 		SetColor ();
 	}
@@ -38,7 +49,7 @@ public class Enemy : MonoBehaviour {
 			Vector3 tilePos = path.Peek ().transform.position;
 			float dist = Vector3.Distance (transform.position, tilePos);
 
-			transform.position = Vector3.Lerp(transform.position, tilePos, 1 / dist * speed);
+			transform.position = Vector3.Lerp(transform.position, tilePos, speed * Time.fixedDeltaTime / dist);
 
 			if (dist <= ERROR_RANGE) {
 				path.Pop ();
@@ -46,18 +57,22 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void TakeHit (SimonXInterface.SimonButtonType button) {
+	public void TakeHit (SimonXInterface.SimonButtonType button, int damage) {
 
 		if ((int)color == (int)button) {
-			color--;
-		}
 
-		if (color < 0) {
-			Destroy (gameObject);
-			return;
-		}
+			hp -= damage;
+			if (hp <= 0) {
+				
+				color--;
+				if (color < 0) {
+					Destroy (gameObject);
+					return;
+				}
 
-		SetColor ();
+				SetColor ();
+			}
+		}
 	}
 
 	private void SetColor () {
@@ -66,15 +81,26 @@ public class Enemy : MonoBehaviour {
 
 		case Colors.BLUE:
 			sr.color = Color.blue;
+			hp = blueHP;
+			speed = blueSpeed;
 			break;
+
 		case Colors.GREEN:
 			sr.color = Color.green;
+			hp = greenHP;
+			speed = greenSpeed;
 			break;
+
 		case Colors.RED:
 			sr.color = Color.red;
+			hp = redHP;
+			speed = redSpeed;
 			break;
+
 		case Colors.YELLOW:
 			sr.color = Color.yellow;
+			hp = yellowHP;
+			speed = yellowSpeed;
 			break;
 		}
 	}
