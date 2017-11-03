@@ -24,4 +24,12 @@ public class GridWorld : MonoBehaviour {
 			}
 		}
 	}
+
+	public static bool InBounds (int x, int y) {
+		return x >= 0 && y >= 0 && x < grid.GetLength (0) && y < grid.GetLength (1);
+	}
+
+	public static bool CanTravelTo(int x, int y) {
+		return InBounds (x, y) && grid [x, y].walkable;
+	}
 }

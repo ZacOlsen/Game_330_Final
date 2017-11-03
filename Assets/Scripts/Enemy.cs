@@ -5,10 +5,17 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
+	public enum Colors {
+		BLUE,
+		YELLOW,
+		GREEN,
+		RED
+	}
+
 	[SerializeField] private float speed = 5;
 	private const float ERROR_RANGE = .05f;
 
-	[SerializeField] private bool[] colors = null;	
+	public Colors color;
 
 	private SpriteRenderer sr;
 	public Tile current = null;
@@ -19,28 +26,9 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 
 		sr = GetComponent<SpriteRenderer> ();
-
-		for (int i = 0; i < colors.Length; i++) {
-			if (colors [i]) {
-
-				switch (i) {
-				case 0:
-					sr.color = Color.blue;
-					break;
-				case 1:
-					sr.color = Color.yellow;
-					break;
-				case 2:
-					sr.color = Color.green;
-					break;
-				default:
-					sr.color = Color.red;
-					break;
-				}
-			}
-		}
-
 		path = AStar.Path (current, end, GridWorld.grid);
+
+		SetColor ();
 	}
 
 	void FixedUpdate () {
@@ -58,20 +46,36 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void TakeHit (SimonXInterface.SimonButtonType color) {
+	public void TakeHit (SimonXInterface.SimonButtonType button) {
 
-		colors [(int)color] = false;
-
-		bool hasLife = false;
-		for (int i = 0; i < colors.Length; i++) {
-			if (colors [i]) {
-				hasLife = true;
-				break;
-			}
+		if ((int)color == (int)button) {
+			color--;
 		}
 
-		if (!hasLife) {
+		if (color < 0) {
 			Destroy (gameObject);
+			return;
+		}
+
+		SetColor ();
+	}
+
+	private void SetColor () {
+
+		switch (color) {
+
+		case Colors.BLUE:
+			sr.color = Color.blue;
+			break;
+		case Colors.GREEN:
+			sr.color = Color.green;
+			break;
+		case Colors.RED:
+			sr.color = Color.red;
+			break;
+		case Colors.YELLOW:
+			sr.color = Color.yellow;
+			break;
 		}
 	}
 }

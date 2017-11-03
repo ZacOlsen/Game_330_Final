@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define DIAGONALS
+
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,48 +45,60 @@ public class Tile : MonoBehaviour, IComparable<Tile> {
 	}
 
 	public int CompareTo (Tile tile) {
-		return fitness - tile.fitness < 0 ? 1 : -1;
+
+		float f = fitness - tile.fitness;
+
+		if (f < 0) {
+			return 1;
+
+		} else if (f > 0) {
+			return -1;
+		}
+
+		return 0;
 	}
 
 	public List<Tile> GetNeighbors () {
 
 		List<Tile> neighbors = new List<Tile> ();
 
-		if (x < GridWorld.grid.GetLength(0) - 1 && GridWorld.grid[x + 1, y].walkable) {
-			neighbors.Add (GridWorld.grid[x + 1, y]);
+		if (GridWorld.CanTravelTo(x + 1, y)) {
+			neighbors.Add (GridWorld.grid [x + 1, y]);
 		}
 
-	//	if (x < GridWorld.grid.GetLength(0) - 1 && y < GridWorld.grid.GetLength(1) - 1 && GridWorld.grid[x + 1, y + 1].walkable
-	//		&& GridWorld.grid[x, y + 1].walkable && GridWorld.grid[x + 1, y].walkable) {
-	//		neighbors.Add (GridWorld.grid[x + 1, y + 1]);
-	//	}
-
-		if (y < GridWorld.grid.GetLength (1) - 1 && GridWorld.grid [x, y + 1].walkable) {
-			neighbors.Add (GridWorld.grid[x, y + 1]);
+		if (GridWorld.CanTravelTo(x, y + 1)) {
+			neighbors.Add (GridWorld.grid [x, y + 1]);
 		}
 
-	//	if (x > 0 && y < GridWorld.grid.GetLength(1) - 1 && GridWorld.grid[x - 1, y + 1].walkable
-	//		&& GridWorld.grid[x, y + 1].walkable && GridWorld.grid[x - 1, y].walkable) {
-	//		neighbors.Add (GridWorld.grid[x - 1, y + 1]);
-	//	}
-
-		if (x > 0 && GridWorld.grid[x - 1, y].walkable) {
-			neighbors.Add (GridWorld.grid[x - 1, y]);
+		if (GridWorld.CanTravelTo(x - 1, y)) {
+			neighbors.Add (GridWorld.grid [x - 1, y]);
 		}
 
-	//	if (x > 0 && y > 0 && GridWorld.grid[x - 1, y - 1].walkable
-	//		&& GridWorld.grid[x, y - 1].walkable && GridWorld.grid[x - 1, y].walkable) {
-	//		neighbors.Add (GridWorld.grid[x - 1, y - 1]);
-	//	}
-
-		if (y > 0 && GridWorld.grid[x, y - 1].walkable) {
-			neighbors.Add (GridWorld.grid[x, y - 1]);
+		if (GridWorld.CanTravelTo(x, y - 1)) {
+			neighbors.Add (GridWorld.grid [x, y - 1]);
 		}
 
-	//	if (x < GridWorld.grid.GetLength(0) - 1 && y > 0 && GridWorld.grid[x + 1, y - 1].walkable
-	//		&& GridWorld.grid[x, y - 1].walkable && GridWorld.grid[x + 1, y].walkable) {
-	//		neighbors.Add (GridWorld.grid[x + 1, y - 1]);
-	//	}
+		#if DIAGONALS
+		if (x < GridWorld.grid.GetLength(0) - 1 && y < GridWorld.grid.GetLength(1) - 1 && GridWorld.grid[x + 1, y + 1].walkable
+			&& GridWorld.grid[x, y + 1].walkable && GridWorld.grid[x + 1, y].walkable) {
+			neighbors.Add (GridWorld.grid[x + 1, y + 1]);
+		}
+
+		if (x > 0 && y < GridWorld.grid.GetLength(1) - 1 && GridWorld.grid[x - 1, y + 1].walkable
+			&& GridWorld.grid[x, y + 1].walkable && GridWorld.grid[x - 1, y].walkable) {
+			neighbors.Add (GridWorld.grid[x - 1, y + 1]);
+		}
+
+		if (x > 0 && y > 0 && GridWorld.grid[x - 1, y - 1].walkable
+			&& GridWorld.grid[x, y - 1].walkable && GridWorld.grid[x - 1, y].walkable) {
+			neighbors.Add (GridWorld.grid[x - 1, y - 1]);
+		}
+
+		if (x < GridWorld.grid.GetLength(0) - 1 && y > 0 && GridWorld.grid[x + 1, y - 1].walkable
+			&& GridWorld.grid[x, y - 1].walkable && GridWorld.grid[x + 1, y].walkable) {
+			neighbors.Add (GridWorld.grid[x + 1, y - 1]);
+		}
+		#endif
 
 		return neighbors;
 	}

@@ -21,13 +21,18 @@ public static class AStar {
 			Tile current = open.RemoveFirst ();
 			current.closed = true;
 
+			if (current == finish) {
+				break;
+			}
+
 			List<Tile> neighbors = current.GetNeighbors();
 			for (int i = 0; i < neighbors.Count; i++) {
 				if (neighbors[i].closed) {
 					continue;
 				}
 
-				float tempGoal = current.goal + DistBetween(current, neighbors[i]) + neighbors[i].weight;
+				float tempGoal = current.goal + DistBetween(current, neighbors[i]) * neighbors[i].weight;
+
 				if (!open.Contains (neighbors[i])) {
 					
 					neighbors [i].prev = current;
@@ -35,8 +40,12 @@ public static class AStar {
 					neighbors [i].fitness = neighbors[i].goal + EstimateHeuristic(neighbors[i], finish);
 					open.Add (neighbors [i]);
 
-				} else if (tempGoal >= neighbors[i].goal) {
-					continue;
+				} else if (tempGoal < neighbors[i].goal) {
+					neighbors [i].goal = tempGoal;
+					neighbors [i].prev = current;
+					neighbors [i].fitness = tempGoal + EstimateHeuristic (neighbors [i], finish);
+					open.UpdateItem (neighbors [i]);
+					//continue;
 				}
 			}
 		}
@@ -48,7 +57,7 @@ public static class AStar {
 			path = CreatePath (finish);
 		}
 
-		CleanseMap (grid);
+//		CleanseMap (grid);
 
 		return path;
 	}
@@ -88,9 +97,16 @@ public static class AStar {
 		Stack<Tile> path = new Stack<Tile> ();
 
 		while (finish != null) {
+
+			if (finish.prev) {
+				Debug.DrawLine (finish.transform.position, finish.prev.transform.position, Color.red, 9999f);
+			}
+
 			path.Push (finish);
 			finish = finish.prev;
 		}
+
+		Debug.Break ();
 
 		return path;
 	}
