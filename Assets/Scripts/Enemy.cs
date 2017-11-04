@@ -95,6 +95,13 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	public void Init (Tile start, Tile goal, Colors color) {
+
+		currentTile = start;
+		end = goal;
+		this.color = color;
+	}
+
 	public void TakeHit (Colors color, int damage) {
 
 		if (this.color == color) {
