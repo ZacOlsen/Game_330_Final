@@ -1,0 +1,5 @@
+1 blue 2
+1 blue .5
+1 blue .2
+1 blue .2
+1 blue .1

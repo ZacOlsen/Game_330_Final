@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum Colors {
+	BLUE,
+	YELLOW,
+	GREEN,
+	RED
+}
+
 public class Enemy : MonoBehaviour {
 
-	public enum Colors {
-		BLUE,
-		YELLOW,
-		GREEN,
-		RED
-	}
+	public static List<Enemy> allEnemies = new List<Enemy>();
 
 	[SerializeField] private int blueHP = 5;
 	[SerializeField] private int yellowHP = 5;
@@ -22,8 +24,14 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private float greenSpeed = 5;
 	[SerializeField] private float redSpeed = 5;
 
+	[SerializeField] private int blueValue = 5;
+	[SerializeField] private int yellowValue = 6;
+	[SerializeField] private int greenValue = 7;
+	[SerializeField] private int redValue = 8;
+
 	[SerializeField] private int hp;
 	[SerializeField] private float speed;
+	[SerializeField] private int goldValue;
 	private const float ERROR_RANGE = .05f;
 
 	public Colors color;
@@ -39,7 +47,27 @@ public class Enemy : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer> ();
 		path = AStar.Path (currentTile, end, GridWorld.grid);
 
+		switch (color) {
+
+		case Colors.BLUE:
+			goldValue = blueValue;
+			break;
+
+		case Colors.GREEN:
+			goldValue = greenValue;
+			break;
+
+		case Colors.RED:
+			goldValue = redValue;
+			break;
+
+		case Colors.YELLOW:
+			goldValue = yellowValue;
+			break;
+		}
+
 		SetColor ();
+		allEnemies.Add (this);
 	}
 
 	void FixedUpdate () {
@@ -57,15 +85,25 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void TakeHit (SimonXInterface.SimonButtonType button, int damage) {
+	void OnDestroy () {
+		
+		allEnemies.Remove (this);
 
-		if ((int)color == (int)button) {
+		GameObject go = GameObject.Find ("Player");
+		if (go) {
+			go.GetComponent<PlayerController> ().AddGold (goldValue);
+		}
+	}
+
+	public void TakeHit (Colors color, int damage) {
+
+		if (this.color == color) {
 
 			hp -= damage;
 			if (hp <= 0) {
 				
-				color--;
-				if (color < 0) {
+				this.color--;
+				if (this.color < 0) {
 					Destroy (gameObject);
 					return;
 				}
@@ -73,6 +111,10 @@ public class Enemy : MonoBehaviour {
 				SetColor ();
 			}
 		}
+	}
+
+	public int TilesRemaining () {
+		return path.Count;
 	}
 
 	private void SetColor () {

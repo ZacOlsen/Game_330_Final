@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GridWorld : MonoBehaviour {
 
-	//[SerializeField] private GameObject gridSquare = null;
-
 	public const int WIDTH = 7;
 	public const int HEIGHT = 9;
 	public static Tile[,] grid;

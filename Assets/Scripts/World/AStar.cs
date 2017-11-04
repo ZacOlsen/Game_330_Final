@@ -105,9 +105,7 @@ public static class AStar {
 			path.Push (finish);
 			finish = finish.prev;
 		}
-
-//		Debug.Break ();
-
+			
 		return path;
 	}
 }

@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private Vector2 cornerUR = Vector2.zero;
 	[SerializeField] private float tiltRange = 5f;
 
+	private int totalGold = 0;
+
 	void Update () {
 
 		Collider colHit = null;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (colHit) {
-			colHit.GetComponent<Enemy> ().TakeHit (button, damage);
+			colHit.GetComponent<Enemy> ().TakeHit ((Colors)((int)button), damage);
 		}
 	}
 
@@ -57,6 +59,14 @@ public class PlayerController : MonoBehaviour {
 				
 			transform.position += addPos;
 		}
+	}
+
+	public void AddGold (int gold) {
+		totalGold += gold;
+	}
+
+	public bool TakeGold (int gold) {
+		return false;
 	}
 
 	private Collider Shoot () {
