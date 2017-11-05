@@ -13,24 +13,18 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	[SerializeField] private string[] waveFiles = null;
-	[SerializeField] private int waveNum = 0;
+	[SerializeField] private int waveNum = -1;
 
 	[SerializeField] private Tile[] spawnLocations = null;
 	[SerializeField] private Tile goalLocation = null;
 	private float timeOfLastSpawn;
 
 	[SerializeField] private GameObject enemy = null;
-	private LinkedList<WaveSpawn> waveSpawns;
+	private LinkedList<WaveSpawn> waveSpawns = new LinkedList<WaveSpawn> ();
 	private bool inWave = false;
 	[SerializeField] private GameObject bm = null;
 
 	[SerializeField] private Text waveText = null;
-
-	void Start () {
-
-		CreateWaveList ();
-		timeOfLastSpawn = Time.time;
-	}
 	
 	void FixedUpdate () {
 
@@ -57,6 +51,14 @@ public class WaveManager : MonoBehaviour {
 		}
 	}
 
+	public Tile[] GetSpawnLocations () {
+		return spawnLocations;
+	}
+
+	public Tile GetGoalLocation () {
+		return goalLocation;
+	}
+
 	private void SpawnNextEnemy () {
 
 		WaveSpawn ws = waveSpawns.First.Value;
@@ -69,7 +71,6 @@ public class WaveManager : MonoBehaviour {
 	private void CreateWaveList () {
 
 		waveText.text = "Wave: " + (waveNum + 1);
-
 		waveSpawns = new LinkedList<WaveSpawn> ();
 
 		string fileName = waveFiles [waveNum];
@@ -77,7 +78,6 @@ public class WaveManager : MonoBehaviour {
 
 		while (sr.Peek() >= 0) {
 			string line = sr.ReadLine ();
-		//	Debug.Log (line);
 
 			WaveSpawn ws = new WaveSpawn ();
 
@@ -117,7 +117,6 @@ public class WaveManager : MonoBehaviour {
 
 			ws.timeFromPrevSpawn = float.Parse(line.Substring(start, end - start));
 	
-	//		Debug.Log (ws.spawnLocation + " " + ws.color + " " + ws.timeFromPrevSpawn);
 			waveSpawns.AddLast (ws);
 		}
 	}

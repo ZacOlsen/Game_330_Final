@@ -1293,7 +1293,7 @@ MonoBehaviour:
   cornerLL: {x: -3, y: -4}
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
-  totalGold: 0
+  totalGold: 400
   health: 40
   healthText: {fileID: 112643372}
   goldText: {fileID: 1331032593}
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3c13e10cbd15045aa6247f4c067365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 420029921}
+  player: {fileID: 420029922}
   selector: {fileID: 1462530031}
   items:
   - {fileID: 431147795}
@@ -3923,53 +3923,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1401543334
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1535290964}
-    m_Modifications:
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.0000000052683564
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.0000000052683564
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: e451f7df1cc7ff44ba4d9aacacc3e233, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1401543335 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4378865235558040, guid: e451f7df1cc7ff44ba4d9aacacc3e233,
-    type: 2}
-  m_PrefabInternal: {fileID: 1401543334}
 --- !u!1001 &1401897341
 Prefab:
   m_ObjectHideFlags: 0
@@ -4407,7 +4360,6 @@ Transform:
   - {fileID: 101234223}
   - {fileID: 1688982247}
   - {fileID: 1235162337}
-  - {fileID: 1401543335}
   - {fileID: 1670547661}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -4914,7 +4866,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1535290964}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1670547662
 MonoBehaviour:
@@ -4933,7 +4885,7 @@ MonoBehaviour:
   - wave3.txt
   - wave4.txt
   - wave5.txt
-  waveNum: 0
+  waveNum: -1
   spawnLocations:
   - {fileID: 1381502965}
   goalLocation: {fileID: 1774561227}

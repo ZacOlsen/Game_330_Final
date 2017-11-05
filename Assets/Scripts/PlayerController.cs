@@ -23,22 +23,22 @@ public class PlayerController : MonoBehaviour {
 
 		if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_LL)) {
 			button = SimonXInterface.SimonButtonType.Button_LL;
-			colHit = Shoot ();
+			colHit = ShootRay ();
 
 		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_LR)) {
 			button = SimonXInterface.SimonButtonType.Button_LR;
-			colHit = Shoot ();
+			colHit = ShootRay ();
 
 		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_UR)) {
 			button = SimonXInterface.SimonButtonType.Button_UR;
-			colHit = Shoot ();
+			colHit = ShootRay ();
 
 		} else if (SimonXInterface.GetButtonDown (SimonXInterface.SimonButtonType.Button_UL)) {
 			button = SimonXInterface.SimonButtonType.Button_UL;
-			colHit = Shoot ();
+			colHit = ShootRay ();
 		}
 
-		if (colHit) {
+		if (colHit && colHit.CompareTag ("Enemy")) {
 			colHit.GetComponent<Enemy> ().TakeHit ((Colors)((int)button), damage);
 		}
 	}
@@ -73,6 +73,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool TakeGold (int gold) {
+
+		if (totalGold >= gold) {
+			totalGold -= gold;
+			return true;
+		}
+
 		return false;
 	}
 
@@ -82,15 +88,11 @@ public class PlayerController : MonoBehaviour {
 		healthText.text = "Health: " + health;
 	}
 
-	private Collider Shoot () {
+	public Collider ShootRay () {
 
 		RaycastHit hit;
 		Physics.Raycast (transform.position, -Vector3.up, out hit, 15);
 
-		if (hit.collider && hit.collider.CompareTag ("Enemy")) {
-			return hit.collider;
-		}
-
-		return null;
+		return hit.collider;
 	}
 }
