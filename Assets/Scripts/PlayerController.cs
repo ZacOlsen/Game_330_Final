@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,7 +10,11 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private Vector2 cornerUR = Vector2.zero;
 	[SerializeField] private float tiltRange = 5f;
 
-	private int totalGold = 0;
+	[SerializeField] private int totalGold = 0;
+	[SerializeField] private int health = 40;
+
+	[SerializeField] private Text healthText = null;
+	[SerializeField] private Text goldText = null;
 
 	void Update () {
 
@@ -62,11 +67,19 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void AddGold (int gold) {
+		
 		totalGold += gold;
+		goldText.text = "Total Gold: " + totalGold;
 	}
 
 	public bool TakeGold (int gold) {
 		return false;
+	}
+
+	public void TakeDamage (int damage) {
+
+		health -= damage;
+		healthText.text = "Health: " + health;
 	}
 
 	private Collider Shoot () {

@@ -54,7 +54,6 @@ public static class AStar {
 
 //		PrintPathRetrace (finish);
 		if (finish.prev != null) {
-			Debug.Log ("path");
 			path = CreatePath (finish);
 		}
 

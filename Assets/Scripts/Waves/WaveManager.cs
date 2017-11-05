@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour {
 
@@ -20,6 +21,10 @@ public class WaveManager : MonoBehaviour {
 
 	[SerializeField] private GameObject enemy = null;
 	private LinkedList<WaveSpawn> waveSpawns;
+	private bool inWave = false;
+	[SerializeField] private GameObject bm = null;
+
+	[SerializeField] private Text waveText = null;
 
 	void Start () {
 
@@ -29,15 +34,30 @@ public class WaveManager : MonoBehaviour {
 	
 	void FixedUpdate () {
 
-		if (waveSpawns.Count > 0 && Time.time - timeOfLastSpawn >= waveSpawns.First.Value.timeFromPrevSpawn) {
-			SpawnNextEnemy ();
+		if (waveSpawns.Count > 0) {
+
+			if (Time.time - timeOfLastSpawn >= waveSpawns.First.Value.timeFromPrevSpawn) {
+				SpawnNextEnemy ();
+				timeOfLastSpawn = Time.time;
+			}
+
+		} else if (inWave && Enemy.allEnemies.Count == 0) {
+			inWave = false;
+			bm.SetActive (true);
+		}
+	}
+
+	public void NextWave () {
+
+		waveNum++;
+		if (waveNum < waveFiles.Length) {
+			inWave = true;
 			timeOfLastSpawn = Time.time;
+			CreateWaveList ();
 		}
 	}
 
 	private void SpawnNextEnemy () {
-	
-		//Debug.Log ("spawn");
 
 		WaveSpawn ws = waveSpawns.First.Value;
 		waveSpawns.RemoveFirst ();
@@ -47,6 +67,8 @@ public class WaveManager : MonoBehaviour {
 	}
 
 	private void CreateWaveList () {
+
+		waveText.text = "Wave: " + (waveNum + 1);
 
 		waveSpawns = new LinkedList<WaveSpawn> ();
 

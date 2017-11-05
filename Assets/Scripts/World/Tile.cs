@@ -42,6 +42,7 @@ public class Tile : MonoBehaviour, IComparable<Tile> {
 		prev = null;
 		goal = float.MaxValue;
 		fitness = float.MaxValue;
+		closed = false;
 	}
 
 	public int CompareTo (Tile tile) {

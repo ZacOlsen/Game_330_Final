@@ -30,6 +30,10 @@ public class Tower : MonoBehaviour {
 
 	void FixedUpdate () {
 
+		while (enemiesInRange.Count > 0 && enemiesInRange [0] == null) {
+			enemiesInRange.RemoveAt (0);
+		}
+
 		for(int i = 0; i < Enemy.allEnemies.Count; i++){
 			if (Vector3.SqrMagnitude (Enemy.allEnemies [i].transform.position - transform.position) <= range * range
 				&& color == Enemy.allEnemies[i].color && !enemiesInRange.Contains(Enemy.allEnemies[i])) {

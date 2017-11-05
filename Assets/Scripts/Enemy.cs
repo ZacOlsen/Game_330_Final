@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private int hp;
 	[SerializeField] private float speed;
 	[SerializeField] private int goldValue;
+	[SerializeField] private int damage = 1;
 	private const float ERROR_RANGE = .05f;
 
 	public Colors color;
@@ -77,22 +78,21 @@ public class Enemy : MonoBehaviour {
 			Vector3 tilePos = path.Peek ().transform.position;
 			float dist = Vector3.Distance (transform.position, tilePos);
 
-			transform.position = Vector3.Lerp(transform.position, tilePos, speed * Time.fixedDeltaTime / dist);
+			transform.position = Vector3.Lerp (transform.position, tilePos, speed * Time.fixedDeltaTime / dist);
 
 			if (dist <= ERROR_RANGE) {
 				path.Pop ();
 			}
+
+		} else {
+			
+			GameObject.Find ("Player").GetComponent<PlayerController> ().TakeDamage (damage);
+			Destroy (gameObject);
 		}
 	}
 
 	void OnDestroy () {
-		
 		allEnemies.Remove (this);
-
-		GameObject go = GameObject.Find ("Player");
-		if (go) {
-			go.GetComponent<PlayerController> ().AddGold (goldValue);
-		}
 	}
 
 	public void Init (Tile start, Tile goal, Colors color) {
@@ -111,6 +111,7 @@ public class Enemy : MonoBehaviour {
 				
 				this.color--;
 				if (this.color < 0) {
+					GameObject.Find ("Player").GetComponent<PlayerController> ().AddGold (goldValue);
 					Destroy (gameObject);
 					return;
 				}
