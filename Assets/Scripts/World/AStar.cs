@@ -8,7 +8,7 @@ public static class AStar {
 
 	public static Stack<Tile> Path (Tile start, Tile finish, Tile[,] grid) {
 
-		if (start == finish) {
+		if (start == finish || !start.walkable) {
 			return new Stack<Tile> ();
 		}
 			

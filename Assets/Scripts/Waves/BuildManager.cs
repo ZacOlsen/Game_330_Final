@@ -50,8 +50,14 @@ public class BuildManager : MonoBehaviour {
 
 		Collider col = player.ShootRay ();
 		if (col && col.CompareTag ("Tile")) {
-
 			Tile t = col.GetComponent<Tile> ();
+			
+			if (itemIndex == items.Length - 1 && t.tower) {
+				Destroy (t.tower);
+				t.walkable = true;
+				return;
+			}
+
 			if (t.walkable) {
 
 				t.walkable = false;
@@ -67,7 +73,7 @@ public class BuildManager : MonoBehaviour {
 				}
 
 				if (pathPossible && player.TakeGold (items [itemIndex].GetCost ())) {
-					Instantiate (items [itemIndex].GetItem (), t.transform.position, 
+					t.tower = Instantiate (items [itemIndex].GetItem (), t.transform.position, 
 						Quaternion.Euler(-90f, 0, 0));
 
 				} else {

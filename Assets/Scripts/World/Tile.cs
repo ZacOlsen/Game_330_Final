@@ -23,6 +23,8 @@ public class Tile : MonoBehaviour, IComparable<Tile> {
 	public int heapIndex;
 	public bool closed;
 
+	public GameObject tower;
+
 	void Start () {
 		sr = GetComponentInChildren<SpriteRenderer> ();
 	}

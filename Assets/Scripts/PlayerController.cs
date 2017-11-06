@@ -9,12 +9,19 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private Vector2 cornerLL = Vector2.zero;
 	[SerializeField] private Vector2 cornerUR = Vector2.zero;
 	[SerializeField] private float tiltRange = 5f;
+	[SerializeField] private float speed = 1f;
 
 	[SerializeField] private int totalGold = 0;
 	[SerializeField] private int health = 40;
 
 	[SerializeField] private Text healthText = null;
 	[SerializeField] private Text goldText = null;
+
+	[SerializeField] private SimonXControlScript sxcs = null;
+
+	void Start () {
+		UpdateSchmeckles ();
+	}
 
 	void Update () {
 
@@ -38,6 +45,10 @@ public class PlayerController : MonoBehaviour {
 			colHit = ShootRay ();
 		}
 
+		if (Input.GetAxisRaw ("Vertical") == 0 && Input.GetAxisRaw ("Horizontal") == 0) {
+			sxcs.Recenter ();
+		}
+
 		if (colHit && colHit.CompareTag ("Enemy")) {
 			colHit.GetComponent<Enemy> ().TakeHit ((Colors)((int)button), damage);
 		}
@@ -50,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 		
 		if (v.magnitude > tiltRange) {
 
-			Vector3 addPos = v;
+			Vector3 addPos = v * speed;
 
 			if ((v.x > 0 && transform.position.x > cornerUR.x) || 
 				(v.x < 0 && transform.position.x < cornerLL.x)) {
@@ -69,17 +80,22 @@ public class PlayerController : MonoBehaviour {
 	public void AddGold (int gold) {
 		
 		totalGold += gold;
-		goldText.text = "Total Gold: " + totalGold;
+		UpdateSchmeckles ();
 	}
 
 	public bool TakeGold (int gold) {
 
 		if (totalGold >= gold) {
 			totalGold -= gold;
+			UpdateSchmeckles ();
 			return true;
 		}
 
 		return false;
+	}
+
+	private void UpdateSchmeckles () {
+		goldText.text = "Schmeckles: " + totalGold;
 	}
 
 	public void TakeDamage (int damage) {

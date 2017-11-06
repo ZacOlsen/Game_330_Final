@@ -91,6 +91,11 @@ public class SimonXControlScript : MonoBehaviour {
         }
     }
 
+	public void Recenter () {
+		horizontalAngle = 0;
+		verticalAngle = 0;
+	}
+
     public bool IsButtonDepressed(int buttonIndex)
     {
         if(buttonIndex < SimonButtons.Length)
