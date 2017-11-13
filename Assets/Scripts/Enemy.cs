@@ -29,6 +29,11 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private int greenValue = 7;
 	[SerializeField] private int redValue = 8;
 
+	[SerializeField] private Material blue = null;
+	[SerializeField] private Material green = null;
+	[SerializeField] private Material red = null;
+	[SerializeField] private Material yellow = null;
+
 	[SerializeField] private int hp;
 	[SerializeField] private float speed;
 	[SerializeField] private int goldValue;
@@ -37,7 +42,7 @@ public class Enemy : MonoBehaviour {
 
 	public Colors color;
 
-	private SpriteRenderer sr;
+	private MeshRenderer mesh;
 	public Tile currentTile = null;
 	public Tile end = null;
 
@@ -45,7 +50,7 @@ public class Enemy : MonoBehaviour {
 
 	void Start () {
 
-		sr = GetComponent<SpriteRenderer> ();
+		mesh = GetComponent<MeshRenderer> ();
 		path = AStar.Path (currentTile, end, GridWorld.grid);
 
 		switch (color) {
@@ -78,6 +83,7 @@ public class Enemy : MonoBehaviour {
 			Vector3 tilePos = path.Peek ().transform.position;
 			float dist = Vector3.Distance (transform.position, tilePos);
 
+			transform.LookAt (path.Peek ().transform);
 			transform.position = Vector3.Lerp (transform.position, tilePos, speed * Time.fixedDeltaTime / dist);
 
 			if (dist <= ERROR_RANGE) {
@@ -130,25 +136,25 @@ public class Enemy : MonoBehaviour {
 		switch (color) {
 
 		case Colors.BLUE:
-			sr.color = Color.blue;
+			mesh.material = blue;
 			hp = blueHP;
 			speed = blueSpeed;
 			break;
 
 		case Colors.GREEN:
-			sr.color = Color.green;
+			mesh.material = green;
 			hp = greenHP;
 			speed = greenSpeed;
 			break;
 
 		case Colors.RED:
-			sr.color = Color.red;
+			mesh.material = red;
 			hp = redHP;
 			speed = redSpeed;
 			break;
 
 		case Colors.YELLOW:
-			sr.color = Color.yellow;
+			mesh.material = yellow;
 			hp = yellowHP;
 			speed = yellowSpeed;
 			break;
