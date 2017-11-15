@@ -12,11 +12,11 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 294
+  frameCount: 180
   frameRate: 30
   colorSpace: 0
   deinterlace: 0
-  sourceFileSize: 83291
+  sourceFileSize: 58640
   encodeAlpha: 0
   sourceHasAlpha: 0
   flipVertical: 0
@@ -39,11 +39,11 @@ VideoClipImporter:
     encodedWidth: 256
     encodedHeight: 256
     encodedStartFrame: 0
-    encodedEndFrame: 294
+    encodedEndFrame: 180
     streamedResource:
       source: 
       offset: 0
-      size: 83291
+      size: 58640
   userData: 
   assetBundleName: 
   assetBundleVariant: 
