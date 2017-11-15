@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
 
 	public Colors color;
 
-	private MeshRenderer mesh;
+	private SkinnedMeshRenderer mesh;
 	public Tile currentTile = null;
 	public Tile end = null;
 
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour {
 
 	void Start () {
 
-		mesh = GetComponent<MeshRenderer> ();
+		mesh = GetComponentInChildren<SkinnedMeshRenderer> ();
 		path = AStar.Path (currentTile, end, GridWorld.grid);
 
 		switch (color) {
