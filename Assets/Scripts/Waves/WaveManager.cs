@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour {
 
@@ -48,6 +49,8 @@ public class WaveManager : MonoBehaviour {
 			inWave = true;
 			timeOfLastSpawn = Time.time;
 			CreateWaveList ();
+		} else {
+			SceneManager.LoadScene ("Level 2");
 		}
 	}
 
