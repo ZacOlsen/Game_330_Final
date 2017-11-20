@@ -23,19 +23,24 @@ public class Tile : MonoBehaviour, IComparable<Tile> {
 	public int heapIndex;
 	public bool closed;
 
-	public GameObject tower;
+	public GameObject blocker;
+	[SerializeField] private GameObject stump = null;
 
 	void Start () {
 		sr = GetComponentInChildren<SpriteRenderer> ();
+
+		if (!walkable) {
+			blocker = Instantiate (stump, transform.position, stump.transform.rotation);
+		}
 	}
 
 	void FixedUpdate () {
 
-		if (!walkable) {
-			sr.color = Color.black;
-		} else {
-			sr.color = Color.white;
-		}
+//		if (!walkable) {
+//			sr.color = Color.black;
+//		} else {
+//			sr.color = Color.white;
+//		}
 	}
 
 	public void Cleanse () {

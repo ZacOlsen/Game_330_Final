@@ -52,8 +52,8 @@ public class BuildManager : MonoBehaviour {
 		if (col && col.CompareTag ("Tile")) {
 			Tile t = col.GetComponent<Tile> ();
 			
-			if (itemIndex == items.Length - 1 && t.tower) {
-				Destroy (t.tower);
+			if (itemIndex == items.Length - 1 && t.blocker) {
+				Destroy (t.blocker);
 				t.walkable = true;
 				return;
 			}
@@ -73,7 +73,7 @@ public class BuildManager : MonoBehaviour {
 				}
 
 				if (pathPossible && player.TakeGold (items [itemIndex].GetCost ())) {
-					t.tower = Instantiate (items [itemIndex].GetItem (), t.transform.position, 
+					t.blocker = Instantiate (items [itemIndex].GetItem (), t.transform.position, 
 						Quaternion.Euler(-90f, 0, 0));
 
 				} else {

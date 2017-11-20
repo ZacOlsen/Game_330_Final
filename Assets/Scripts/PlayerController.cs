@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private SimonXControlScript sxcs = null;
 
+	[SerializeField] private Text defeat = null;
+
 	void Start () {
 		UpdateSchmeckles ();
 	}
@@ -102,6 +104,10 @@ public class PlayerController : MonoBehaviour {
 
 		health -= damage;
 		healthText.text = "Health: " + health;
+
+		if (health <= 0) {
+			defeat.enabled = true;
+		}
 	}
 
 	public Collider ShootRay () {

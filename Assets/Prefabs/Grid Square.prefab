@@ -74,6 +74,8 @@ MonoBehaviour:
   fitness: 3.4028235e+38
   heapIndex: 0
   closed: 0
+  tower: {fileID: 0}
+  stump: {fileID: 1054323294375666, guid: 7b96d0e44f7dfa743be9d57e6fcb527c, type: 2}
 --- !u!212 &212414201948502764
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -106,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8896678c33e3c5a4aa0ec0ef2e74c686, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d23ca6e90dd48148a5d275462b5bbdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
