@@ -1,0 +1,8 @@
+1 blue 2
+1 blue .5
+1 yellow .5
+2 blue 1
+2 blue .5
+2 yellow .5
+1 blue .3
+2 blue 0

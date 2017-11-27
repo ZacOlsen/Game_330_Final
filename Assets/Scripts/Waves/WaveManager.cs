@@ -22,11 +22,11 @@ public class WaveManager : MonoBehaviour {
 
 	[SerializeField] private GameObject enemy = null;
 	private LinkedList<WaveSpawn> waveSpawns = new LinkedList<WaveSpawn> ();
-	private bool inWave = false;
+	public static bool inWave = false;
 	[SerializeField] private GameObject bm = null;
 
 	[SerializeField] private Text waveText = null;
-	
+
 	void FixedUpdate () {
 
 		if (waveSpawns.Count > 0) {
@@ -50,7 +50,8 @@ public class WaveManager : MonoBehaviour {
 			timeOfLastSpawn = Time.time;
 			CreateWaveList ();
 		} else {
-			SceneManager.LoadScene ("Level 2");
+			string name = SceneManager.GetActiveScene ().name;
+			SceneManager.LoadScene ("Level " + (int.Parse(name[name.Length - 1].ToString()) + 1));
 		}
 	}
 
@@ -77,7 +78,9 @@ public class WaveManager : MonoBehaviour {
 		waveSpawns = new LinkedList<WaveSpawn> ();
 
 		string fileName = waveFiles [waveNum];
-		StreamReader sr = new StreamReader ("Assets\\Wave Files\\Map1\\" + fileName);
+
+		string name = SceneManager.GetActiveScene ().name;
+		StreamReader sr = new StreamReader ("Assets\\Wave Files\\Map" + name[name.Length - 1] + "\\" + fileName);
 
 		while (sr.Peek() >= 0) {
 			string line = sr.ReadLine ();

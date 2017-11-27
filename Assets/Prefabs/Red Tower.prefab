@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1.5
-  damage: 5
+  damage: 13
   coolDown: 0.5
   bulletSpawn: {fileID: 4489097136303796}
   bullet: {fileID: 1100365430540170, guid: 67995b4e0dc33484187a8edf4a904468, type: 2}

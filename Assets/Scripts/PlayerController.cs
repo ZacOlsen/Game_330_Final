@@ -19,7 +19,10 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private SimonXControlScript sxcs = null;
 
+	[SerializeField] private Color highlite;
 	[SerializeField] private Text defeat = null;
+
+	private SpriteRenderer target;
 
 	void Start () {
 		UpdateSchmeckles ();
@@ -57,6 +60,23 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
+		if (!WaveManager.inWave) {
+			Collider col = ShootRay ();
+
+			if (col) {
+				SpriteRenderer sr = col.GetComponent<SpriteRenderer> ();
+				if (sr != target) {
+					if (target) {
+						target.color = Color.white;
+					}
+					target = sr;
+					target.color = highlite;
+				}
+			}
+		} else {
+			target.color = Color.white;
+		}
 
 		Vector3 v = SimonXInterface.GetDownVector ();
 		v.y = 0;

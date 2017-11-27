@@ -1054,7 +1054,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957470263308314}
-  m_LocalRotation: {x: 0.7071078, y: 0.00028152895, z: 0.7071058, w: -0.00028152973}
+  m_LocalRotation: {x: 0.7071077, y: 0.00028152892, z: 0.70710576, w: -0.0002815297}
   m_LocalPosition: {x: 0.031578694, y: 0.000056390676, z: -0.028599141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1130,18 +1130,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe16e9a33143d04ba809574920fdab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueHP: 5
-  yellowHP: 5
-  greenHP: 10
-  redHP: 5
-  blueSpeed: 5
-  yellowSpeed: 5
-  greenSpeed: 5
-  redSpeed: 5
+  blueHP: 10
+  yellowHP: 15
+  greenHP: 25
+  redHP: 50
+  blueSpeed: 3
+  yellowSpeed: 3
+  greenSpeed: 4
+  redSpeed: 2
   blueValue: 5
-  yellowValue: 6
-  greenValue: 7
-  redValue: 8
+  yellowValue: 7
+  greenValue: 10
+  redValue: 13
   blue: {fileID: 2100000, guid: d7c2fb46abc6e8d4e815b65af4fb353e, type: 2}
   green: {fileID: 2100000, guid: b3d5bd486a93cc0499e9d058f914b9c6, type: 2}
   red: {fileID: 2100000, guid: d6a1f7880d2eb7d4ea9cf500ef28d891, type: 2}
