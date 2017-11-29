@@ -72,7 +72,7 @@ public class BuildManager : MonoBehaviour {
 					}
 				}
 
-				if (pathPossible && player.TakeGold (items [itemIndex].GetCost ())) {
+				if (pathPossible && items[itemIndex].GetItem() && player.TakeGold (items [itemIndex].GetCost ())) {
 					t.blocker = Instantiate (items [itemIndex].GetItem (), t.transform.position, 
 						Quaternion.Euler(-90f, 0, 0));
 
