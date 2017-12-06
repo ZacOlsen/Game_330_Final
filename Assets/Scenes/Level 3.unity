@@ -1000,7 +1000,7 @@ MonoBehaviour:
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
   speed: 0.5
-  totalGold: 150
+  totalGold: 100
   health: 20
   healthText: {fileID: 112643372}
   goldText: {fileID: 1331032593}
@@ -1509,11 +1509,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 101234223}
     m_Modifications:
-    - target: {fileID: 114727225787563940, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
-        type: 2}
-      propertyPath: items.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 224196233376929212, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1614,16 +1609,6 @@ Prefab:
       propertyPath: wm
       value: 
       objectReference: {fileID: 1670547662}
-    - target: {fileID: 114727225787563940, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
-        type: 2}
-      propertyPath: items.Array.data[5]
-      value: 
-      objectReference: {fileID: 1203787794}
-    - target: {fileID: 114727225787563940, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
-        type: 2}
-      propertyPath: items.Array.data[4]
-      value: 
-      objectReference: {fileID: 1655129906}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572, type: 2}
   m_IsPrefabParent: 0
@@ -2946,12 +2931,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1203787794 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114417071261585064, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
-    type: 2}
-  m_PrefabInternal: {fileID: 636438500}
-  m_Script: {fileID: 11500000, guid: 09c9f33bb2363a14087254f541655ef5, type: 3}
 --- !u!4 &1209077015 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4657543316408532, guid: 9edb3c6395626a345bd9bddad908b7b4,
@@ -4397,12 +4376,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1655129906 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114887853308067284, guid: 58fa7498d4df1bc4fabf0d6a9b2a8572,
-    type: 2}
-  m_PrefabInternal: {fileID: 636438500}
-  m_Script: {fileID: 11500000, guid: 09c9f33bb2363a14087254f541655ef5, type: 3}
 --- !u!1 &1670547660
 GameObject:
   m_ObjectHideFlags: 0

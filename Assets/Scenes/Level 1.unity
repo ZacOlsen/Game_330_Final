@@ -1115,7 +1115,7 @@ MonoBehaviour:
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
   speed: 0.5
-  totalGold: 150
+  totalGold: 100
   health: 20
   healthText: {fileID: 112643372}
   goldText: {fileID: 1331032593}
@@ -1306,7 +1306,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
@@ -2051,7 +2051,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
@@ -2757,7 +2757,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
@@ -4191,7 +4191,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
@@ -4357,7 +4357,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
@@ -5110,7 +5110,7 @@ Prefab:
     - target: {fileID: 114895145781782088, guid: 9edb3c6395626a345bd9bddad908b7b4,
         type: 2}
       propertyPath: walkable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9edb3c6395626a345bd9bddad908b7b4, type: 2}
