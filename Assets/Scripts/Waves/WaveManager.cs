@@ -51,7 +51,12 @@ public class WaveManager : MonoBehaviour {
 			CreateWaveList ();
 		} else {
 			string name = SceneManager.GetActiveScene ().name;
-			SceneManager.LoadScene ("Level " + (int.Parse(name[name.Length - 1].ToString()) + 1));
+			int level = int.Parse(name[name.Length - 1].ToString());
+			if (level < 3) {
+				SceneManager.LoadScene ("Level " + (level + 1));
+			} else {
+				SceneManager.LoadScene ("Victory");
+			}
 		}
 	}
 

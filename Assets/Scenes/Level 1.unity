@@ -1115,8 +1115,8 @@ MonoBehaviour:
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
   speed: 0.5
-  totalGold: 400
-  health: 40
+  totalGold: 150
+  health: 20
   healthText: {fileID: 112643372}
   goldText: {fileID: 1331032593}
   sxcs: {fileID: 2036942019}

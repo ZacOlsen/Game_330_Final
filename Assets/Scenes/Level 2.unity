@@ -1105,11 +1105,12 @@ MonoBehaviour:
   cornerUR: {x: 3, y: 4}
   tiltRange: 0.05
   speed: 0.5
-  totalGold: 400
-  health: 40
+  totalGold: 150
+  health: 20
   healthText: {fileID: 112643372}
   goldText: {fileID: 1331032593}
   sxcs: {fileID: 2036942019}
+  highlite: {r: 1, g: 0.68235296, b: 0, a: 1}
   defeat: {fileID: 2075905527}
 --- !u!124 &420029923
 Behaviour:

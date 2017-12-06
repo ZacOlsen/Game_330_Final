@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -126,7 +127,8 @@ public class PlayerController : MonoBehaviour {
 		healthText.text = "Health: " + health;
 
 		if (health <= 0) {
-			defeat.enabled = true;
+			SceneManager.LoadScene ("Defeat");
+			//defeat.enabled = true;
 		}
 	}
 

@@ -9,7 +9,7 @@ public class BuyItem : MonoBehaviour {
 	[SerializeField] private int cost = 20;
 
 	void Start () {
-		GetComponentInChildren<Text> ().text = cost + "G";
+		GetComponentInChildren<Text> ().text = cost + "S";
 	}
 
 	public int GetCost () {
