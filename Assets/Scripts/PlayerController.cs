@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	private SpriteRenderer target;
 
 	void Start () {
+		TakeDamage (0);
 		UpdateSchmeckles ();
 	}
 
